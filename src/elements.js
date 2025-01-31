@@ -1,22 +1,25 @@
-export function displayProject(project) {
+export function displayProjects(myProjects) {
 
-    const projectElement = document.createElement('div');
-    projectElement.classList.add('project');
-    projectElement.textContent = (`${project.title} and ${project.notes}`)
+    myProjects.projects.forEach(project => {
 
-    const todoList = document.createElement('div');
-    todoList.classList.add('todo-list');
+        const projectElement = document.createElement('div');
+        projectElement.classList.add('project');
+        projectElement.textContent = (`${project.title} and ${project.notes}`)
 
-    project.todos.forEach(todo => {
-        const todoElement = document.createElement('div');
-        todoElement.classList.add('todo');
-        todoElement.textContent = (`${todo.title}, ${todo.description}, ${todo.dueDate}, ${todo.priority}`)
-        todoList.appendChild(todoElement);
+        const todoList = document.createElement('div');
+        todoList.classList.add('todo-list');
+
+        project.todos.forEach(todo => {
+            const todoElement = document.createElement('div');
+            todoElement.classList.add('todo');
+            todoElement.textContent = (`${todo.title}, ${todo.description}, ${todo.dueDate}, ${todo.priority}`)
+            todoList.appendChild(todoElement);
+        });
+
+        projectElement.appendChild(todoList);
+
+        elements.projectList.appendChild(projectElement);
     });
-
-    projectElement.appendChild(todoList);
-
-    elements.projectList.appendChild(projectElement);
 }
 
 const elements = (() => {
