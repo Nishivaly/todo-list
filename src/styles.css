@@ -8,3 +8,7 @@ body {
 .content {
     background-color: rgb(118, 247, 146);
 }
+
+.project {
+    background-color: red;
+}
