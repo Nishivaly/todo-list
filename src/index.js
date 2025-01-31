@@ -4,16 +4,14 @@ import { displayProjects } from "./elements"
 
 const myProjects = createProjectList();
 
-myProjects.addProject(createProject('Project title','project notes'))
-myProjects.addProject(createProject('Project title','project notes'))
-myProjects.addProject(createProject('Project title','project notes'))
-myProjects.addProject(createProject('Project title','project notes'))
-myProjects.addProject(createProject('Project title','project notes'))
+const newProjectBtn = document.querySelector('#new-project-btn')
 
-myProjects.projects.forEach(project => {
+newProjectBtn.addEventListener('click', () => {
+
+    const project = createProject('Project title', 'project notes');
     project.addTodo(createTodo('todo title', "todo desc", 'duetomorrow', 'high priority'));
+    
+    myProjects.addProject(project);
+
+    displayProjects(myProjects);
 })
-
-displayProjects(myProjects);
-
-console.log(myProjects.projects)

@@ -20,10 +20,20 @@ body {
     width: clamp(20rem, 70%, 70rem);
     gap: 2rem;
     border: red solid 2px;
+    justify-content: center;
+    padding: 20px;
 }
 
 .project {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    gap: 20px;
+    border: black 1px solid;
+    padding: 5px;
+}
+
+.todo-list {
+    border: black 1px solid;
 }

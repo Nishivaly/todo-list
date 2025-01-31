@@ -1,4 +1,7 @@
 export function displayProjects(myProjects) {
+    while (elements.projectList.firstChild) {
+        elements.projectList.removeChild(elements.projectList.firstChild);
+    }
 
     myProjects.projects.forEach(project => {
 
