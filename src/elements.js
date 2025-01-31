@@ -1,4 +1,4 @@
-export function addProject(newProject) {
+export function displayProject(newProject) {
 
     const project = document.createElement('div');
     project.classList.add('project');
