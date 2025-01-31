@@ -1,17 +1,23 @@
-export function displayProject(newProject) {
+export function displayProject(project) {
 
-    const project = document.createElement('div');
-    project.classList.add('project');
-    project.textContent = (`${newProject.title} and ${newProject.notes}`)
+    const projectElement = document.createElement('div');
+    projectElement.classList.add('project');
+    projectElement.textContent = (`${project.title} and ${project.notes}`)
 
-    const toDo = document.createElement('div');
-    toDo.classList.add('todo');
-    project.appendChild(toDo);
+    const todoList = document.createElement('div');
+    todoList.classList.add('todo-list');
 
-    elements.projectList.appendChild(project);
+    project.todos.forEach(todo => {
+        const todoElement = document.createElement('div');
+        todoElement.classList.add('todo');
+        todoElement.textContent = (`${todo.title}, ${todo.description}, ${todo.dueDate}, ${todo.priority}`)
+        todoList.appendChild(todoElement);
+    });
+
+    projectElement.appendChild(todoList);
+
+    elements.projectList.appendChild(projectElement);
 }
-
-
 
 const elements = (() => {
     const content = document.querySelector('.content');
