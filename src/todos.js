@@ -1,7 +1,20 @@
+export function createProjectList() {
+    return {
+        projects: [],
+        addProject(project) {
+            this.projects.push(project)
+        }
+    }
+}
+
 export function createProject(title, notes) {
     const project = {
         title,
-        notes
+        notes,
+        todos: [],
+        addTodo(todo) {
+            this.todos.push(todo)
+        },
     }
     return Object.assign(
         {},
