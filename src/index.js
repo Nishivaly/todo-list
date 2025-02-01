@@ -4,6 +4,8 @@ import { displayProjects } from "./display.js"
 
 
 const myProjectList = createProjectList();
+const projects = myProjectList.getProjects();
+
 myProjectList.addProject('titleasd', 'mynots')
 myProjectList.addTodo(0, 'todotitle', 'desc', 'duetmw', 'high');
 
@@ -15,75 +17,71 @@ myProjectList.addTodo(2, 'todotitle', 'desc', 'duetmw', 'high');
 
 console.log(myProjectList.getProjects());
 
-console.log(myProjectList.getTodos(0))
+console.log(myProjectList.getTodos(0));
 
-displayProjects(myProjectList.getProjects());
+displayProjects(projects);
 
 const mytodo = myProjectList.getTodos(0)[0];
 
-console.log(mytodo)
+console.log(mytodo);
 
 mytodo.toggle();
-console.log(mytodo)
+console.log(mytodo);
 
+(() => {
+    const projectModal = document.querySelector('#project-modal');
+    const showProjectModal = document.querySelector('#open-project-modal');
+    const closeProjectModal = document.querySelector('#close-project-modal');
+    const projectForm = document.querySelector('#project-form');
 
-// import { createProject, createTodo, createProjectList } from "./factory"
-// import { displayProjects } from "./elements"
+    showProjectModal.addEventListener('click', () => {
+        projectModal.showModal();
+    })
 
-// const setup = (() => {
+    closeProjectModal.addEventListener('click', () => {
+        projectModal.close();
+    })
 
-//     const myProjects = createProjectList();
-//     myProjects.addProject(createProject('Default project', 'notes here'));
-//     displayProjects(myProjects);
+    projectForm.addEventListener('submit', event => {
+        event.preventDefault();
 
-//     const projectModal = document.querySelector('#project-modal');
-//     const showProjectModal = document.querySelector('#open-project-modal');
-//     const closeProjectModal = document.querySelector('#close-project-modal');
-//     const projectForm = document.querySelector('#project-form');
+        const title = document.querySelector('#project-title').value;
+        const notes = document.querySelector('#project-notes').value;
 
-//     showProjectModal.addEventListener('click', () => {
-//         projectModal.showModal();
-//     })
+        myProjectList.addProject(title, notes);
 
-//     closeProjectModal.addEventListener('click', () => {
-//         projectModal.close();
-//     })
+        projectForm.reset();
+        projectModal.close();
 
-//     projectForm.addEventListener('submit', event => {
-//         event.preventDefault();
-//         const title = document.querySelector('#project-title').value;
-//         const notes = document.querySelector('#project-notes').value;
-//         const project = createProject(title, notes);
-//         myProjects.addProject(project);
-//         projectForm.reset();
-//         projectModal.close();
-//         displayProjects(myProjects);
-//     })
+        displayProjects(projects);
+    })
 
-//     const projectList = document.querySelector("#project-list");
+    const projectList = document.querySelector("#project-list");
 
-//     projectList.addEventListener('click', event => {
-//         if (event.target.classList.contains("delete-project")) {
+    projectList.addEventListener('click', event => {
+        if (event.target.classList.contains("delete-project")) {
 
-//             const index = event.target.closest('div').dataset.id;
-//             myProjects.deleteProject(index);
-//             displayProjects(myProjects);
-//         }
+            const index = event.target.closest('div').dataset.id;
+            myProjectList.deleteProject(index);
 
-//         if (event.target.classList.contains("delete-todo")) {
+            displayProjects(projects);
+        }
 
-//             const i = event.target.closest('.project').dataset.id;
-//             const j = event.target.closest('div').dataset.id;
-//             myProjects.projects[i].deleteTodo(j);
-//             displayProjects(myProjects);
-//         }
+        if (event.target.classList.contains("delete-todo")) {
 
-//         if (event.target.classList.contains("add-todo")) {
+            const i = event.target.closest('.project').dataset.id;
+            const j = event.target.closest('div').dataset.id;
+            myProjectList.deleteTodo(i, j);
 
-//             const index = event.target.closest('div').dataset.id;
-//             myProjects.projects[index].addTodo(createTodo('todo title', "todo desc", 'duetomorrow', 'high priority'));
-//             displayProjects(myProjects);
-//         }
+            displayProjects(projects);
+        }
 
-//     })
-// })();
+        if (event.target.classList.contains("add-todo")) {
+
+            const index = event.target.closest('.project').dataset.id;
+            myProjectList.addTodo(index, 'todotile', 'descr', 'duetmw', 'hiugh');
+            
+            displayProjects(projects);
+        }
+    })
+})();
