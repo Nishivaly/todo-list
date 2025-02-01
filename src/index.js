@@ -1,16 +1,23 @@
 import "./styles.css"
 import { createProjectList } from "./factory"
+import { displayProjects } from "./display.js"
 
 
 const myProjectList = createProjectList();
 myProjectList.addProject('titleasd', 'mynots')
-
 myProjectList.addTodo(0, 'todotitle', 'desc', 'duetmw', 'high');
+
+myProjectList.addProject('titleasd', 'mynots')
+myProjectList.addTodo(1, 'todotitle', 'desc', 'duetmw', 'high');
+
+myProjectList.addProject('titleasd', 'mynots')
+myProjectList.addTodo(2, 'todotitle', 'desc', 'duetmw', 'high');
 
 console.log(myProjectList.getProjects());
 
 console.log(myProjectList.getTodos(0))
 
+displayProjects(myProjectList.getProjects());
 
 
 

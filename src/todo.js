@@ -1,4 +1,8 @@
-export function setTodoContent(todo) {
+export function createTodoElement(todo, index) {
+
+    const todoElement = document.createElement('div');
+    todoElement.classList.add('todo');
+    todoElement.setAttribute("data-id", index);
 
     const todoContent = document.createElement('div');
     todoContent.classList.add('todo-content');
@@ -24,5 +28,7 @@ export function setTodoContent(todo) {
     todoContent.appendChild(due);
     todoContent.appendChild(priority);
 
-    return todoContent;
+    todoElement.appendChild(todoContent);
+
+    return todoElement;
 }
