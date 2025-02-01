@@ -2,31 +2,13 @@ import "./styles.css"
 import { createProjectList } from "./factory"
 import { displayProjects } from "./display.js"
 
-
 const myProjectList = createProjectList();
 const projects = myProjectList.getProjects();
 
-myProjectList.addProject('titleasd', 'mynots')
+myProjectList.addProject('Default project', 'Cool notes about our shit idk')
 myProjectList.addTodo(0, 'todotitle', 'desc', 'duetmw', 'high');
 
-myProjectList.addProject('titleasd', 'mynots')
-myProjectList.addTodo(1, 'todotitle', 'desc', 'duetmw', 'high');
-
-myProjectList.addProject('titleasd', 'mynots')
-myProjectList.addTodo(2, 'todotitle', 'desc', 'duetmw', 'high');
-
-console.log(myProjectList.getProjects());
-
-console.log(myProjectList.getTodos(0));
-
 displayProjects(projects);
-
-const mytodo = myProjectList.getTodos(0)[0];
-
-console.log(mytodo);
-
-mytodo.toggle();
-console.log(mytodo);
 
 (() => {
     const projectModal = document.querySelector('#project-modal');
