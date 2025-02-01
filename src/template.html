@@ -41,10 +41,21 @@
                     <label for="todo-description">Todo Description:</label>
                     <textarea id="todo-description" name="todo-description" rows="4" required></textarea>
                 </div>
+                <div>
+                    <label for="todo-due">Todo Due Date:</label>
+                    <input type="date" id="todo-due" name="todo-due" required>
+                </div>
+                <div>
+                    <label for="todo-priority">Todo Priority:</label>
+                    <select id="todo-priority" name="todo-priority" required>
+                        <option>Low</option>
+                        <option selected>Medium</option>
+                        <option>High</option>
+                    </select>
+                </div>
                 <button type="submit">Add Todo</button>
             </form>
         </dialog>
-        <!-- <button id="open-todo-modal">New todo</button> -->
 
 
     </div>
