@@ -52,8 +52,9 @@ const setup = (() => {
 
         if (event.target.classList.contains("add-todo")) {
 
-            const index = event.target.closest('div').dataset.id;
-            myProjects.projects[index].addTodo(createTodo('todo title', "todo desc", 'duetomorrow', 'high priority'));
+            const i = event.target.closest('.project').dataset.id;
+            const j = event.target.closest('div').dataset.id;
+            myProjects.projects[i].addTodo(j);
             displayProjects(myProjects);
         }
 
