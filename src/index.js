@@ -59,8 +59,8 @@ displayProjects(projects);
 
         if (event.target.classList.contains("add-todo")) {
 
-            const index = event.target.closest('.project').dataset.id;
-            todoForm.dataset.index = index;
+            const projectIndex = event.target.closest('.project').dataset.id;
+            todoForm.dataset.index = projectIndex;
 
             todoModal.showModal();
         }
@@ -85,14 +85,14 @@ displayProjects(projects);
     todoForm.addEventListener('submit', event => {
         event.preventDefault();
 
-        const index = document.querySelector('#todo-form').dataset.index;
+        const projectIndex = document.querySelector('#todo-form').dataset.index;
 
         const title = document.querySelector('#todo-title').value;
         const description = document.querySelector('#todo-description').value;
         const dueDate = document.querySelector('#todo-due').value;
         const priority = document.querySelector('#todo-priority').value;
 
-        myProjectList.addTodo(index, title, description, dueDate, priority);
+        myProjectList.addTodo(projectIndex, title, description, dueDate, priority);
 
         todoForm.reset();
         todoModal.close();
