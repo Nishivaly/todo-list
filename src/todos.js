@@ -18,6 +18,9 @@ export function createProject(title, notes) {
         addTodo(todo) {
             this.todos.push(todo)
         },
+        deleteTodo(index) {
+            this.todos.splice(index, 1)
+        },
     }
     return Object.assign(
         {},

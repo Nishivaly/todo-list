@@ -3,11 +3,11 @@ export function displayProjects(myProjects) {
         elements.projectList.removeChild(elements.projectList.firstChild);
     }
 
-    myProjects.projects.forEach((project, index) => {
+    myProjects.projects.forEach((project, i) => {
 
         const projectElement = document.createElement('div');
         projectElement.classList.add('project');
-        projectElement.setAttribute("data-id", index);
+        projectElement.setAttribute("data-id", i);
         projectElement.textContent = (`${project.title} and ${project.notes}`)
 
         elements.addDeletePrjBtn(projectElement);
@@ -15,10 +15,13 @@ export function displayProjects(myProjects) {
         const todoList = document.createElement('div');
         todoList.classList.add('todo-list');
 
-        project.todos.forEach(todo => {
+        project.todos.forEach((todo, j) => {
             const todoElement = document.createElement('div');
             todoElement.classList.add('todo');
+            todoElement.setAttribute("data-id", j);
             todoElement.textContent = (`${todo.title}, ${todo.description}, ${todo.dueDate}, ${todo.priority}`)
+            elements.addDeleteTodoBtn(todoElement);
+
             todoList.appendChild(todoElement);
         });
 
@@ -42,5 +45,13 @@ const elements = (() => {
         projectElement.appendChild(deleteButton);
     }
 
-    return { projectList, addDeletePrjBtn }
+    
+    const addDeleteTodoBtn = (todoElement) => {
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete-todo');
+        deleteButton.textContent = "Delete todo";
+        todoElement.appendChild(deleteButton);
+    }
+
+    return { projectList, addDeletePrjBtn, addDeleteTodoBtn }
 })();

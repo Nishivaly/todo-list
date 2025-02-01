@@ -18,11 +18,20 @@ newProjectBtn.addEventListener('click', () => {
 })
 
 projectList.addEventListener('click', event => {
-    
+
     if (event.target.classList.contains("delete-project")) {
 
         const index = event.target.closest('div').dataset.id;
         myProjects.deleteProject(index);
         displayProjects(myProjects);
     }
+    
+    if (event.target.classList.contains("delete-todo")) {
+
+        const i = event.target.closest('.project').dataset.id;
+        const j = event.target.closest('div').dataset.id;
+        myProjects.projects[i].deleteTodo(j);
+        displayProjects(myProjects);
+    }
+
 })
