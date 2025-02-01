@@ -20,36 +20,6 @@ console.log(myProjectList.getTodos(0))
 displayProjects(myProjectList.getProjects());
 
 
-
-
-// // Step 1: Create a new project list
-// const projectList = createProjectList();
-
-// // Step 2: Add a project to the project list
-// projectList.addProject('My First Project', 'This is a description of the first project');
-
-// // Step 3: Retrieve the created project list to view the projects
-// console.log('Project List:', projectList.getProjects());
-
-// // Step 4: Add a todo to the first project (which is at index 0 in the projects array)
-// const firstProject = projectList.getProjects()[0];
-// firstProject.addTodo('Finish the task', 'Complete the first task of the project', '2025-02-10', 'High');
-
-// // Step 5: View the updated project to see the todo added
-// console.log('Updated Project:', projectList.getProjects()[0]);
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import { createProject, createTodo, createProjectList } from "./factory"
 // import { displayProjects } from "./elements"
 

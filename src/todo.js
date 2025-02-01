@@ -30,5 +30,22 @@ export function createTodoElement(todo, index) {
 
     todoElement.appendChild(todoContent);
 
+    addTodoButtons.deleteTodo(todoElement)
+
     return todoElement;
 }
+
+const addTodoButtons = (() => {
+
+    const deleteTodo = (todoElement) => {
+
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete-todo');
+        deleteButton.textContent = "Delete todo";
+        todoElement.appendChild(deleteButton);
+    }
+
+    return {
+        deleteTodo,
+    }
+})();

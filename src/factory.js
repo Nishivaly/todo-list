@@ -55,60 +55,6 @@ const canGetTodos = (state) => ({
     getTodos: projectIndex => state.projects[projectIndex].todos
 })
 
-
-
-
-
-
-
-
-
-
-
-
-// const todoAdder = (state) => ({
-//     addTodo: (title, description, dueDate, priority) => {
-//         const todo = {
-//             title,
-//             description,
-//             dueDate,
-//             priority
-//         }
-// })
-
-// export function createProject(title, notes) {
-//     const project = {
-//         title,
-//         notes,
-//         todos: [],
-//         addTodo(todo) {
-//             this.todos.push(todo)
-//         },
-//         deleteTodo(index) {
-//             this.todos.splice(index, 1)
-//         },
-//     }
-//     return Object.assign(
-//         {},
-//         project,
-//         toggleable()
-//     )
-// }
-
-// export function createTodo(title, description, dueDate, priority) {
-//     const todo = {
-//         title,
-//         description,
-//         dueDate,
-//         priority,
-//     }
-//     return Object.assign(
-//         {},
-//         todo,
-//         toggleable()
-//     )
-// }
-
 // const toggleable = () => ({
 //     completed: false,
 //     toggle() {

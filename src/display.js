@@ -1,5 +1,5 @@
 import { createProjectElement } from "./project";
-import { createTodoElement, setTodoContent } from "./todo";
+import { createTodoElement } from "./todo";
 
 export function displayProjects(listOfProjects) {
 
@@ -10,16 +10,16 @@ export function displayProjects(listOfProjects) {
     listOfProjects.forEach((project, i) => {
 
         const projectElement = createProjectElement(project, i);
-        elements.projectList.appendChild(projectElement);
 
         project.todos.forEach((todo, j) => {
 
             const todoElement = createTodoElement(todo, j)
-            //           
-            //             elements.addDeleteTodoBtn(todoElement);
 
-            //             todoList.appendChild(todoElement);
+            const todoList = projectElement.querySelector('.todo-list');
+            todoList.appendChild(todoElement);
         });
+        
+        elements.projectList.appendChild(projectElement);
     });
 }
 
@@ -29,19 +29,8 @@ const elements = (() => {
 
     const projectList = document.createElement('div');
     projectList.id = 'project-list';
+
     content.appendChild(projectList);
 
-
-    //     const addDeleteTodoBtn = (todoElement) => {
-    //         const deleteButton = document.createElement('button');
-    //         deleteButton.classList.add('delete-todo');
-    //         deleteButton.textContent = "Delete todo";
-    //         todoElement.appendChild(deleteButton);
-    //     }
-
-    return {
-        projectList,
-        //         addDeletePrjBtn, addDeleteTodoBtn,
-        //         addTodoBtn
-    }
+    return { projectList }
 })();
