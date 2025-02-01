@@ -16,12 +16,20 @@ displayProjects(projects);
     const closeProjectModal = document.querySelector('#close-project-modal');
     const projectForm = document.querySelector('#project-form');
 
+    const todoModal = document.querySelector('#todo-modal');
+    const closeTodoModal = document.querySelector('#close-todo-modal');
+    const todoForm = document.querySelector('#todo-form');
+
     showProjectModal.addEventListener('click', () => {
         projectModal.showModal();
     })
 
     closeProjectModal.addEventListener('click', () => {
         projectModal.close();
+    })
+
+    closeTodoModal.addEventListener('click', () => {
+        todoModal.close();
     })
 
     projectForm.addEventListener('submit', event => {
@@ -34,6 +42,21 @@ displayProjects(projects);
 
         projectForm.reset();
         projectModal.close();
+
+        displayProjects(projects);
+    })
+
+    todoForm.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const title = document.querySelector('#todo-title').value;
+        const description = document.querySelector('#todo-description').value;
+        const index = document.querySelector('#todo-form').dataset.index;
+
+        myProjectList.addTodo(index, title, description, 'duedate', 'high');
+
+        todoForm.reset();
+        todoModal.close();
 
         displayProjects(projects);
     })
@@ -59,11 +82,15 @@ displayProjects(projects);
         }
 
         if (event.target.classList.contains("add-todo")) {
-
-            const index = event.target.closest('.project').dataset.id;
-            myProjectList.addTodo(index, 'todotile', 'descr', 'duetmw', 'hiugh');
             
-            displayProjects(projects);
+            const index = event.target.closest('.project').dataset.id;
+            todoForm.dataset.index = index;
+            todoModal.showModal();
+
+            // myProjectList.addTodo(index, 'todotile', 'descr', 'duetmw', 'hiugh');
+            
+            // displayProjects(projects);
         }
     })
+   
 })();

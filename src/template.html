@@ -10,23 +10,43 @@
 <body>
     <div class="content">
         <h1>Todo list!</h1>
-        <!-- <button id="new-project-btn">New project</button> -->
+
         <dialog id="project-modal">
             <button id="close-project-modal">Close</button>
             <h2>Create a New Project</h2>
             <form id="project-form">
                 <div>
                     <label for="project-title">Project Title:</label>
-                    <input autofocus type="text" id="project-title" name="projectTitle" required>
+                    <input autofocus type="text" id="project-title" name="project-title" required>
                 </div>
                 <div>
                     <label for="project-notes">Project Notes:</label>
-                    <textarea id="project-notes" name="projectNotes" rows="4" required></textarea>
+                    <textarea id="project-notes" name="project-notes" rows="4" required></textarea>
                 </div>
                 <button type="submit">Add Project</button>
             </form>
         </dialog>
         <button id="open-project-modal">New project</button>
+
+
+        <dialog id="todo-modal">
+            <button id="close-todo-modal">Close</button>
+            <h2>Create a New Todo</h2>
+            <form id="todo-form" data-index="">
+                <div>
+                    <label for="todo-title">Todo Title:</label>
+                    <input autofocus type="text" id="todo-title" name="todo-title" required>
+                </div>
+                <div>
+                    <label for="todo-description">Todo Description:</label>
+                    <textarea id="todo-description" name="todo-description" rows="4" required></textarea>
+                </div>
+                <button type="submit">Add Todo</button>
+            </form>
+        </dialog>
+        <!-- <button id="open-todo-modal">New todo</button> -->
+
+
     </div>
 </body>
 
