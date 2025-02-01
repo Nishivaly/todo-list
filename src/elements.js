@@ -3,11 +3,14 @@ export function displayProjects(myProjects) {
         elements.projectList.removeChild(elements.projectList.firstChild);
     }
 
-    myProjects.projects.forEach(project => {
+    myProjects.projects.forEach((project, index) => {
 
         const projectElement = document.createElement('div');
         projectElement.classList.add('project');
+        projectElement.setAttribute("data-id", index);
         projectElement.textContent = (`${project.title} and ${project.notes}`)
+
+        elements.addDeletePrjBtn(projectElement);
 
         const todoList = document.createElement('div');
         todoList.classList.add('todo-list');
@@ -26,12 +29,18 @@ export function displayProjects(myProjects) {
 }
 
 const elements = (() => {
-    const content = document.querySelector('.content');
 
+    const content = document.querySelector('.content');
     const projectList = document.createElement('div');
     projectList.id = 'project-list';
-
     content.appendChild(projectList);
 
-    return { projectList }
+    const addDeletePrjBtn = (projectElement) => {
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete-project');
+        deleteButton.textContent = "Delete project";
+        projectElement.appendChild(deleteButton);
+    }
+
+    return { projectList, addDeletePrjBtn }
 })();

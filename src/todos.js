@@ -3,6 +3,9 @@ export function createProjectList() {
         projects: [],
         addProject(project) {
             this.projects.push(project)
+        },
+        deleteProject(index) {
+            this.projects.splice(index, 1)
         }
     }
 }
