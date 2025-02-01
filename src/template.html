@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo list</title>
 </head>
+
 <body>
     <div class="content">
         <h1>Todo list!</h1>
-        <button id="new-project-btn">New project</button>
+        <!-- <button id="new-project-btn">New project</button> -->
+        <dialog id="project-modal">
+            <button id="close-project-modal">Close</button>
+            <h2>Create a New Project</h2>
+            <form id="project-form">
+                <div>
+                    <label for="projectTitle">Project Title:</label>
+                    <input autofocus type="text" id="project-title" name="projectTitle" required>
+                </div>
+                <div>
+                    <label for="projectNotes">Project Notes:</label>
+                    <textarea id="project-notes" name="projectNotes" rows="4" required></textarea>
+                </div>
+                <button type="submit">Add Project</button>
+            </form>
+        </dialog>
+        <button id="open-project-modal">New project</button>
     </div>
 </body>
+
 </html>
