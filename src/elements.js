@@ -1,3 +1,5 @@
+import { setProjectContent } from "./project";
+
 export function displayProjects(myProjects) {
     while (elements.projectList.firstChild) {
         elements.projectList.removeChild(elements.projectList.firstChild);
@@ -8,7 +10,9 @@ export function displayProjects(myProjects) {
         const projectElement = document.createElement('div');
         projectElement.classList.add('project');
         projectElement.setAttribute("data-id", i);
-        projectElement.textContent = (`${project.title} and ${project.notes}`)
+        
+        const projectContent = setProjectContent(project);
+        projectElement.appendChild(projectContent);
 
         elements.addDeletePrjBtn(projectElement);
         elements.addTodoBtn(projectElement);
