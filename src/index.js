@@ -1,5 +1,5 @@
 import "./styles.css"
-import { createProject, createTodo, createProjectList } from "./todos"
+import { createProject, createTodo, createProjectList } from "./factory"
 import { displayProjects } from "./elements"
 
 const setup = (() => {

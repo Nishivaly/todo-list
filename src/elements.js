@@ -1,4 +1,5 @@
 import { setProjectContent } from "./project";
+import { setTodoContent } from "./todo";
 
 export function displayProjects(myProjects) {
     while (elements.projectList.firstChild) {
@@ -13,7 +14,6 @@ export function displayProjects(myProjects) {
         
         const projectContent = setProjectContent(project);
         projectElement.appendChild(projectContent);
-
         elements.addDeletePrjBtn(projectElement);
         elements.addTodoBtn(projectElement);
 
@@ -24,7 +24,9 @@ export function displayProjects(myProjects) {
             const todoElement = document.createElement('div');
             todoElement.classList.add('todo');
             todoElement.setAttribute("data-id", j);
-            todoElement.textContent = (`${todo.title}, ${todo.description}, ${todo.dueDate}, ${todo.priority}`)
+            // todoElement.textContent = (`${todo.title}, ${todo.description}, ${todo.dueDate}, ${todo.priority}`)
+            const todoContent = setTodoContent(todo);
+            todoElement.appendChild(todoContent);
             elements.addDeleteTodoBtn(todoElement);
 
             todoList.appendChild(todoElement);
