@@ -11,6 +11,7 @@ export function displayProjects(myProjects) {
         projectElement.textContent = (`${project.title} and ${project.notes}`)
 
         elements.addDeletePrjBtn(projectElement);
+        elements.addTodoBtn(projectElement);
 
         const todoList = document.createElement('div');
         todoList.classList.add('todo-list');
@@ -45,7 +46,14 @@ const elements = (() => {
         projectElement.appendChild(deleteButton);
     }
 
-    
+
+    const addTodoBtn = (projectElement) => {
+        const addTodoButton = document.createElement('button');
+        addTodoButton.classList.add('add-todo');
+        addTodoButton.textContent = "Add todo";
+        projectElement.appendChild(addTodoButton);
+    }
+
     const addDeleteTodoBtn = (todoElement) => {
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('delete-todo');
@@ -53,5 +61,9 @@ const elements = (() => {
         todoElement.appendChild(deleteButton);
     }
 
-    return { projectList, addDeletePrjBtn, addDeleteTodoBtn }
+    return {
+        projectList,
+        addDeletePrjBtn, addDeleteTodoBtn,
+        addTodoBtn
+    }
 })();
