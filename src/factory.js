@@ -18,6 +18,7 @@ const canAddProject = (state) => ({
             title,
             notes,
             todos: [],
+            ...toggleable(),
         };
         state.projects.push(project)
     }
@@ -39,6 +40,7 @@ const canAddTodo = (state) => ({
             description,
             dueDate,
             priority,
+            ...toggleable(),
         }
         project.todos.push(todo);
     }
@@ -55,10 +57,10 @@ const canGetTodos = (state) => ({
     getTodos: projectIndex => state.projects[projectIndex].todos
 })
 
-// const toggleable = () => ({
-//     completed: false,
-//     toggle() {
-//         this.completed = !this.completed;
-//         console.log(`${this.title} is now ${this.completed ? "completed" : "incomplete"}.`);
-//     }
-// });
+const toggleable = () => ({
+    completed: false,
+    toggle() {
+        this.completed = !this.completed;
+        console.log(`${this.title} is now ${this.completed ? "completed" : "incomplete"}.`);
+    }
+});

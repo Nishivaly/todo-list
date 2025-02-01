@@ -19,6 +19,13 @@ console.log(myProjectList.getTodos(0))
 
 displayProjects(myProjectList.getProjects());
 
+const mytodo = myProjectList.getTodos(0)[0];
+
+console.log(mytodo)
+
+mytodo.toggle();
+console.log(mytodo)
+
 
 // import { createProject, createTodo, createProjectList } from "./factory"
 // import { displayProjects } from "./elements"
