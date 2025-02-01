@@ -64,6 +64,14 @@ displayProjects(projects);
 
             todoModal.showModal();
         }
+
+        if (event.target.classList.contains("toggle-todo")) {
+            const i = event.target.closest('.project').dataset.id;
+            const j = event.target.closest('.todo').dataset.id;
+            myProjectList.getTodos(i)[j].toggle();
+            displayProjects(projects);
+
+        }
     })
 
     const todoModal = document.querySelector('#todo-modal');
