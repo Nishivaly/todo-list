@@ -12,14 +12,7 @@ export const createProjectList = () => {
         ...canDeleteTodo(projectList),
         ...canGetTodos(projectList),
         loadProjects: (savedProjects) => {
-            projectList.projects = savedProjects.map(project => ({
-                ...project,
-                todos: project.todos.map(todo => ({
-                    ...todo,
-                    ...toggleable(), // Restore the toggle() method
-                })),
-            }));
-
+            projectList.projects = savedProjects
         }
     }
 }
@@ -30,7 +23,6 @@ const canAddProject = (state) => ({
             title,
             notes,
             todos: [],
-            // ...toggleable(),
         };
         state.projects.push(project)
         storeShit(state.projects);
@@ -56,7 +48,6 @@ const canAddTodo = (state) => ({
             description,
             dueDate,
             priority,
-            ...toggleable(),
         }
         project.todos.push(todo);
         storeShit(state.projects);
@@ -74,11 +65,3 @@ const canDeleteTodo = (state) => ({
 const canGetTodos = (state) => ({
     getTodos: projectIndex => state.projects[projectIndex].todos
 })
-
-const toggleable = () => ({
-    completed: false,
-    toggle() {
-        this.completed = !this.completed;
-        console.log(`${this.title} is now ${this.completed ? "completed" : "incomplete"}.`);
-    }
-});
