@@ -7,16 +7,19 @@ import {
     setUpTodoEditCloseModalEvent
 } from "./todoedit.js";
 
-const myProjectList = createProjectList();
-const projects = myProjectList.getProjects();
+const myProjectList = (() => {
 
-myProjectList.addProject('Default project', 'Cool notes about our shit idk')
-myProjectList.addTodo(0, 'idk', 'desc', '2025-02-04', 'High');
-myProjectList.addTodo(0, 'idk', 'desc', '2025-02-04', 'High');
-myProjectList.addProject('Default project', 'Cool notes about our shit idk')
-myProjectList.addTodo(1, 'idk', 'desc', '2025-02-04', 'High');
+    let myProjectList = createProjectList();
+    const storage = JSON.parse(localStorage.getItem("projects"));
+    if ( !storage || storage.length === 0) {
+        myProjectList.addProject('Default project', 'Cool notes about our shit idk');
+    } else{
+        myProjectList.loadProjects(storage);
+    }
+    displayProjects(myProjectList.getProjects())
 
-displayProjects(projects);
+    return myProjectList;
+})();
 
 const eventSetup = (() => {
     const projectModal = document.querySelector('#project-modal');
@@ -47,7 +50,7 @@ const eventSetup = (() => {
         projectForm.reset();
         projectModal.close();
 
-        displayProjects(projects);
+        displayProjects(myProjectList.getProjects());
     })
 
     const projectList = document.querySelector("#project-list");
@@ -58,7 +61,7 @@ const eventSetup = (() => {
             const index = event.target.closest('div').dataset.id;
             myProjectList.deleteProject(index);
 
-            displayProjects(projects);
+            displayProjects(myProjectList.getProjects());
         }
 
         if (event.target.classList.contains("delete-todo")) {
@@ -67,7 +70,7 @@ const eventSetup = (() => {
             const j = event.target.closest('div').dataset.id;
             myProjectList.deleteTodo(i, j);
 
-            displayProjects(projects);
+            displayProjects(myProjectList.getProjects());
         }
 
         if (event.target.classList.contains("add-todo")) {
@@ -81,8 +84,10 @@ const eventSetup = (() => {
         if (event.target.classList.contains("toggle-todo")) {
             const i = event.target.closest('.project').dataset.id;
             const j = event.target.closest('.todo').dataset.id;
+
             myProjectList.getTodos(i)[j].toggle();
-            displayProjects(projects);
+
+            displayProjects(myProjectList.getProjects());
         }
 
         if (event.target.classList.contains("edit-todo")) {
@@ -119,7 +124,7 @@ const eventSetup = (() => {
         todoForm.reset();
         todoModal.close();
 
-        displayProjects(projects);
+        displayProjects(myProjectList.getProjects());
     })
 
     setUpTodoEditFormEvent(myProjectList, displayProjects);

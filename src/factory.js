@@ -1,3 +1,5 @@
+import { storeShit } from "./storage";
+
 export const createProjectList = () => {
     const projectList = {
         projects: []
@@ -9,6 +11,16 @@ export const createProjectList = () => {
         ...canAddTodo(projectList),
         ...canDeleteTodo(projectList),
         ...canGetTodos(projectList),
+        loadProjects: (savedProjects) => {
+            projectList.projects = savedProjects.map(project => ({
+                ...project,
+                todos: project.todos.map(todo => ({
+                    ...todo,
+                    ...toggleable(), // Restore the toggle() method
+                })),
+            }));
+
+        }
     }
 }
 
@@ -21,11 +33,15 @@ const canAddProject = (state) => ({
             // ...toggleable(),
         };
         state.projects.push(project)
+        storeShit(state.projects);
     }
 });
 
 const canDeleteProject = (state) => ({
-    deleteProject: (index) => state.projects.splice(index, 1),
+    deleteProject: (index) => {
+        state.projects.splice(index, 1);
+        storeShit(state.projects);
+    }
 });
 
 const canGetProjects = (state) => ({
@@ -43,6 +59,7 @@ const canAddTodo = (state) => ({
             ...toggleable(),
         }
         project.todos.push(todo);
+        storeShit(state.projects);
     }
 });
 
@@ -50,6 +67,7 @@ const canDeleteTodo = (state) => ({
     deleteTodo: (projectIndex, todoIndex) => {
         const project = state.projects[projectIndex];
         project.todos.splice(todoIndex, 1);
+        storeShit(state.projects);
     }
 })
 
