@@ -12,7 +12,9 @@ const projects = myProjectList.getProjects();
 
 myProjectList.addProject('Default project', 'Cool notes about our shit idk')
 myProjectList.addTodo(0, 'idk', 'desc', '2025-02-04', 'High');
-myProjectList.getTodos(0)[0].title = 'urmwwwwm';
+myProjectList.addTodo(0, 'idk', 'desc', '2025-02-04', 'High');
+myProjectList.addProject('Default project', 'Cool notes about our shit idk')
+myProjectList.addTodo(1, 'idk', 'desc', '2025-02-04', 'High');
 
 displayProjects(projects);
 
@@ -86,6 +88,14 @@ const eventSetup = (() => {
         if (event.target.classList.contains("edit-todo")) {
 
             setUpTodoEditButtonEvent(event, myProjectList);
+        }
+
+        if (event.target.classList.contains("todo-content")) {
+            const children = event.target.querySelectorAll('.hidden');
+            children.forEach(child => {
+                child.classList.remove('hidden');
+                
+            });
         }
     })
 

@@ -12,7 +12,7 @@ export function createTodoElement(todo, index) {
     title.textContent = todo.title
 
     const description = document.createElement('p');
-    description.classList.add('todo-description');
+    description.classList.add('todo-description', 'hidden');
     description.textContent = todo.description;
 
     const due = document.createElement('p');
@@ -20,13 +20,12 @@ export function createTodoElement(todo, index) {
     due.textContent = todo.dueDate;
 
     const priority = document.createElement('p');
-    priority.classList.add('todo-priority');
+    priority.classList.add('todo-priority', 'hidden');
     priority.textContent = todo.priority;
 
     const completed = document.createElement('p');
     completed.classList.add('todo-completed');
     completed.textContent = todo.completed;
-    addTodoButtons.toggleTodo(completed);
 
     todoContent.appendChild(title);
     todoContent.appendChild(description);
@@ -36,6 +35,7 @@ export function createTodoElement(todo, index) {
 
     todoElement.appendChild(todoContent);
 
+    addTodoButtons.toggleTodo(todoElement);
     addTodoButtons.editTodo(todoElement);
     addTodoButtons.deleteTodo(todoElement);
 
@@ -55,7 +55,7 @@ const addTodoButtons = (() => {
     const toggleTodo = (completed) => {
         const toggleButton = document.createElement('button');
         toggleButton.classList.add('toggle-todo');
-        toggleButton.textContent = "Toggle todo";
+        toggleButton.textContent = "Mark complete";
         completed.appendChild(toggleButton);
     }
 
