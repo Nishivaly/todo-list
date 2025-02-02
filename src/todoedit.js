@@ -1,4 +1,4 @@
-export const setUpEditButtonEvent = (event, myProjectList) => {
+export const setUpTodoEditButtonEvent = (event, myProjectList) => {
 
     const i = event.target.closest('.project').dataset.id;
     const j = event.target.closest('.todo').dataset.id;
@@ -17,10 +17,10 @@ export const setUpEditButtonEvent = (event, myProjectList) => {
     elements.todoEditModal.showModal();
 }
 
-export const setUpEditFormEvent = (myProjectList, displayProjects) => {
+export const setUpTodoEditFormEvent = (myProjectList, displayProjects) => {
 
     elements.todoEditForm.addEventListener('submit', event => {
-        
+
         event.preventDefault();
 
         const i = document.querySelector('#todo-edit-form').dataset.indexProject;
@@ -40,7 +40,7 @@ export const setUpEditFormEvent = (myProjectList, displayProjects) => {
     });
 }
 
-export const setUpTodoEditModalEvent = () => {
+export const setUpTodoEditCloseModalEvent = () => {
     elements.closeTodoEditModal.addEventListener('click', () => {
         elements.todoEditModal.close();
     })

@@ -1,7 +1,11 @@
 import "./styles.css"
 import { createProjectList } from "./factory"
 import { displayProjects } from "./display.js"
-import { setUpEditButtonEvent, setUpEditFormEvent, setUpTodoEditModalEvent } from "./todoedit.js";
+import {
+    setUpTodoEditButtonEvent,
+    setUpTodoEditFormEvent,
+    setUpTodoEditCloseModalEvent
+} from "./todoedit.js";
 
 const myProjectList = createProjectList();
 const projects = myProjectList.getProjects();
@@ -21,10 +25,6 @@ const eventSetup = (() => {
     const todoModal = document.querySelector('#todo-modal');
     const closeTodoModal = document.querySelector('#close-todo-modal');
     const todoForm = document.querySelector('#todo-form');
-
-    // const todoEditModal = document.querySelector('#todo-edit-modal');
-    // const closeTodoEditModal = document.querySelector('#close-todo-edit-modal');
-    // const todoEditForm = document.querySelector('#todo-edit-form');
 
     showProjectModal.addEventListener('click', () => {
         projectModal.showModal();
@@ -85,7 +85,7 @@ const eventSetup = (() => {
 
         if (event.target.classList.contains("edit-todo")) {
 
-            setUpEditButtonEvent(event, myProjectList);
+            setUpTodoEditButtonEvent(event, myProjectList);
         }
     })
 
@@ -112,8 +112,8 @@ const eventSetup = (() => {
         displayProjects(projects);
     })
 
-    setUpEditFormEvent(myProjectList, displayProjects);
+    setUpTodoEditFormEvent(myProjectList, displayProjects);
 
-    setUpTodoEditModalEvent();
+    setUpTodoEditCloseModalEvent();
 
 })();
