@@ -18,7 +18,7 @@ const canAddProject = (state) => ({
             title,
             notes,
             todos: [],
-            ...toggleable(),
+            // ...toggleable(),
         };
         state.projects.push(project)
     }

@@ -58,6 +58,35 @@
         </dialog>
 
 
+        <dialog id="todo-edit-modal">
+            <button id="close-todo-edit-modal">Close</button>
+            <h2>Edit Todo</h2>
+            <form id="todo-edit-form" data-index="">
+                <div>
+                    <label for="todo-edit-title">Todo Title:</label>
+                    <input autofocus type="text" id="todo-edit-title" name="todo-edit-title" required>
+                </div>
+                <div>
+                    <label for="todo-edit-description">Todo Description:</label>
+                    <textarea id="todo-edit-description" name="todo-edit-description" rows="4" required></textarea>
+                </div>
+                <div>
+                    <label for="todo-edit-due">Todo Due Date:</label>
+                    <input type="date" id="todo-edit-due" name="todo-edit-due" required>
+                </div>
+                <div>
+                    <label for="todo-edit-priority">Todo Priority:</label>
+                    <select id="todo-edit-priority" name="todo-edit-priority" required>
+                        <option>Low</option>
+                        <option selected>Medium</option>
+                        <option>High</option>
+                    </select>
+                </div>
+                <button type="submit">Edit Todo</button>
+            </form>
+        </dialog>
+
+
     </div>
 </body>
 

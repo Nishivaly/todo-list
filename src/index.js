@@ -6,6 +6,8 @@ const myProjectList = createProjectList();
 const projects = myProjectList.getProjects();
 
 myProjectList.addProject('Default project', 'Cool notes about our shit idk')
+myProjectList.addTodo(0, 'idk', 'desc', 'due', 'ihgh');
+myProjectList.getTodos(0)[0].title = 'urmwwwwm';
 
 displayProjects(projects);
 
@@ -70,6 +72,25 @@ displayProjects(projects);
             const j = event.target.closest('.todo').dataset.id;
             myProjectList.getTodos(i)[j].toggle();
             displayProjects(projects);
+        }
+
+        if (event.target.classList.contains("edit-todo")) {
+
+            const i = event.target.closest('.project').dataset.id;
+            const j = event.target.closest('.todo').dataset.id;
+
+            todoEditForm.dataset.indexProject = i;
+            todoEditForm.dataset.indexTodo = j;
+
+            const todo = myProjectList.getTodos(i)[j];
+            const { title, description, dueDate, priority } = todo;
+
+            document.querySelector('#todo-edit-title').value = title;
+            document.querySelector('#todo-edit-description').value = description;
+            document.querySelector('#todo-edit-due').value = dueDate;
+            document.querySelector('#todo-edit-priority').value = priority;
+
+            todoEditModal.showModal();
 
         }
     })
@@ -82,6 +103,7 @@ displayProjects(projects);
         todoModal.close();
     })
 
+    // Add todo
     todoForm.addEventListener('submit', event => {
         event.preventDefault();
 
@@ -96,6 +118,33 @@ displayProjects(projects);
 
         todoForm.reset();
         todoModal.close();
+
+        displayProjects(projects);
+    })
+
+    // Edit todo
+    const todoEditModal = document.querySelector('#todo-edit-modal');
+    const closeTodoEditModal = document.querySelector('#close-todo-edit-modal');
+    const todoEditForm = document.querySelector('#todo-edit-form');
+
+    closeTodoEditModal.addEventListener('click', () => {
+        todoEditModal.close();
+    })
+
+    todoEditForm.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const i = document.querySelector('#todo-edit-form').dataset.indexProject;
+        const j = document.querySelector('#todo-edit-form').dataset.indexTodo;
+
+        const todo = myProjectList.getTodos(i)[j];
+        todo.title = document.querySelector('#todo-edit-title').value;
+        todo.description = document.querySelector('#todo-edit-description').value;
+        todo.dueDate = document.querySelector('#todo-edit-due').value;
+        todo.priority = document.querySelector('#todo-edit-priority').value;
+
+        todoEditForm.reset();
+        todoEditModal.close();
 
         displayProjects(projects);
     })

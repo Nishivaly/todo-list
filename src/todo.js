@@ -36,7 +36,8 @@ export function createTodoElement(todo, index) {
 
     todoElement.appendChild(todoContent);
 
-    addTodoButtons.deleteTodo(todoElement)
+    addTodoButtons.editTodo(todoElement);
+    addTodoButtons.deleteTodo(todoElement);
 
     return todoElement;
 }
@@ -58,8 +59,16 @@ const addTodoButtons = (() => {
         completed.appendChild(toggleButton);
     }
 
+    const editTodo = (todoElement) => {
+        const editButton = document.createElement('button');
+        editButton.classList.add('edit-todo');
+        editButton.textContent = 'Edit todo';
+        todoElement.appendChild(editButton);
+    }
+
     return {
         deleteTodo,
-        toggleTodo
+        toggleTodo,
+        editTodo
     }
 })();
